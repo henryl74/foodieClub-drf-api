@@ -26,7 +26,7 @@ class IngredientsSerializer(serializers.ModelSerializer):
         ]
 
 
-class IngredientsDetailSerializer(RecipeSerializer):
+class IngredientsDetailSerializer(IngredientsSerializer):
     """
     Serializer for the Ingredients model used in Detail view
     Post is a read only field so that we dont have to set it on each update

@@ -5,6 +5,8 @@ from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
 from .serializers import ProfileSerializer
 
+# Create your views here.
+
 
 class ProfileList(generics.ListAPIView):
     """
@@ -23,6 +25,7 @@ class ProfileList(generics.ListAPIView):
     ]
     filterset_fields = [
         'owner__following__followed__profile',
+        'owner__followed__owner__profile',
     ]
     ordering_fields = [
         'posts_count',

@@ -161,7 +161,9 @@ views.py
 
 ![My Bookings Page Mobile Lighthoue Validation](./readme-testing-images/lighthouse_my_bookings_mobile.png)
 
+
 ### Log Out Page
+
 
 #### **Desktop**
 

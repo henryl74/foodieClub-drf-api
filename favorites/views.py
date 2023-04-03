@@ -16,7 +16,7 @@ class FavoriteList(generics.ListCreateAPIView):
     queryset = Favorite.objects.all()
 
     def perform_create(self, serializer):
-        serializer.favorite(owner=self.request.user)
+        serializer.save(owner=self.request.user)
 
 
 class FavoriteDetail(generics.RetrieveDestroyAPIView):

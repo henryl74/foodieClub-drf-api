@@ -3,7 +3,7 @@ from rest_framework import serializers
 from favorites.models import Favorite
 
 
-class favoriteSerializer(serializers.ModelSerializer):
+class FavoriteSerializer(serializers.ModelSerializer):
     """
     Serializer for the favorites model
     Create method ensures the unique nature of 'owner' relating to 'post'
@@ -12,7 +12,7 @@ class favoriteSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
-        model = Save
+        model = Favorite
         fields = [
             'id', 'created_at', 'owner', 'post',
         ]

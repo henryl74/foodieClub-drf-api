@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from posts.models import Post
 from likes.models import Like
-from favorites.models import favorite
+from favorites.models import Favorite
 
 
 class PostSerializer(serializers.ModelSerializer):

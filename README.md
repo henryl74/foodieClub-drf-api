@@ -46,11 +46,6 @@ The principles of agile methodology were utilized during the project. By assigni
 
 ## User Stories
 
-  -   #### First Time Visitor Goals
-        - 
-        -
-        -
-
 [Back to top](<#contents>)
 
 * # Technologies Used

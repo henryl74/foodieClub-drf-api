@@ -1,26 +1,22 @@
-# Project Portfolio 5 Full Stack Frameworks - foodieClub
+# foodieClub DRF-API - Backend
 
 foodieClub project portfolio has been created for educational purposes only as the 5th project in the Code Institute’s full stack development program.
 
-Using the principles of UX design and the agile development methodology, this project was developed using HTML, CSS, JavaScript, Python and the Django framework.
+Using the principles of UX design and the agile development methodology, this project was developed using Django Rest Framework that handles all backend functionality including user profiles, posts, comments, likes, bookmark posts, followers, authentication, authorization and more.
 
-## Live Site
+# Preview
 
-You can view the live deployed game here: <a href="https://www.instagram.com/" target="_blank"> IG Test </a>
+You can view the live deployed backend here: <a href="https://foodieclub-drf-api.herokuapp.com/" target="_blank"> foodieClub DRF-API </a>
 
-![The Coffee Garden](./docs/readme-testing-images/live_site.jpeg)
+You can view the live site here: <a href="https://foodieclub.herokuapp.com/" target="_blank"> foodieClub App </a>
+
+The repository for the frontend application can be found here:  <a href="https://github.com/henryl74/foodieclub" target="_blank"> foodieClub React </a>
 
 # Contents
 
-* [Objective](<#objective>)
-* [User Experience](<#user-experience-ux>)
+* [Database Schema](<#database-schema>)
 * [Agile Methodology](#agile-methodology)
 * [User Stories](#user-stories)
-* [Design](#design)
-* [Database Schema](#database-schema)
-* [The Coffee Garden Flow Chart](#the-coffe-garden-flow-chart)
-* [Features](#features)
-* [Future Features](<#future-features>)
 * [Technologies Used](#technologies-used)
 * [Testing](<#testing>)
   * [Bugs Fixed](#bugs-fixed)
@@ -28,22 +24,19 @@ You can view the live deployed game here: <a href="https://www.instagram.com/" t
 * [Credits](<#credits>)
 * [Acknowledgements](<#acknowledgements>)
 
-# Objective
+# Database Schema
 
-The Coffee Garden is a small restaurant that lacks an online presence and would like to increase the engagement with its customers and potential customers through an online platform. As such they have identified the following areas of opportunity:
+The Database Schema contains the following model instances:
 
-   * Create an online presence
-   * Interact with current/potential customers
-   * Create an online reservation system
-   * Display key information
-   * Create marketing opportunities through the social media links displayed in the site
+- Profiles
+- Posts
+- Ingredients
+- Comments
+- Likes
+- Favorites
+- Followers
 
 [Back to top](<#contents>)
-
-# User Experience (UX)
-
--   ### Site Aims  
-  The overall goal of this project is to create a restaurant webpage that is visually nice and easy to navigate to the user. Visitors should be able to find general information about the restaurant in the home page, as well as finding the menu offerings. In addition, visitors should be able to make a reservation for a table directly on the webpage. It will also provide a booking management admin panel for the restaurant owner.
 
 ## Agile Methodology
 
@@ -54,185 +47,57 @@ The principles of agile methodology were utilized during the project. By assigni
 ## User Stories
 
   -   #### First Time Visitor Goals
-        - As a first time visitor, the user can read and learn about the restaurant, it's location, social media involment and get a feel for this place.
-        - As a first time visitor, the user can find out what kind of food they serve from their menu.
-        - As a first time visitor, the user can find information about how to make a reservation at the restaurant.
-        
-  -   #### Returning Visitor Goals
-        -  As a returning visitor, the user can create an account so I can make an online reservation.
-        -  As a returning visitor, the user can login and find my current bookings.
-        -  As a returning visitor, the user can update or cancel a booking once they login to the site.
-        -  As a returning visitor, the user can check the menu to see if has changed.
-
--    #### Admin Stories
-        - As a site admin, I can add, update, cancel existing bookings made in my website.
-        - As a site admin, I can add, update, and delete users registered on my website.
-        - As a site admin, I can check all the accounts registered on my website.
-
-[Back to top](<#contents>)
-
-## Design
-
-The theme for the project was chosen as per the intended target market in mind for the restaurant. It primarily focuses on attracting families, young people, residents from the area, and visitors to this region.
-    
-- Colors  
-The main colors are overall cream-pastel, it blends well with the main product that this restaurant has to offer; the best coffe in town.
-- Font  
-The fonts in the theme are clear and modern and contribute perfectly to the overall look of the site.  
-- Images  
-The images in the theme provide great content to the site; as the user navigates through the pages; it reasures him the type of products that are being served.
-
-[Back to top](<#contents>)
-
-# Database Schema
-- It consists of a Booking model with a foreignKey of User that relates to the Django standard User model class.
-
-[Back to top](<#contents>)
-
-# The Coffe Garden Flow Chart
-
-![The Coffe Garden Flow Chart](./docs/readme-testing-images/the_coffee_garden_flowchart.jpeg)
-
-[Back to top](<#contents>)
-
-# Features
-
-My project consists of nine webpages:
-
-- Home or landing page.
-- Menu page.
-- Reservation page.
-- Register page.
-- Login page.
-- Book a Table (Reservation Page).
-- Booking confirmation page.
-- My Bookings page.
-- Logout page.
-
-### The Navigation Bar
-
-- The navigation bar shows all the sections that the user can enter and provides a quick and easy means of navigating the site.
-- The navigation bar is very responsive and user friendly, it has an additional hover effect to help the user with his selection.
-- The restaurant logo located on the the left hand corner of the navigation bar, helps the user to go back to the home page by clicking on it.
-
-![Navbar](./docs/readme-testing-images/navigation_bar.jpeg)
-
-### Home or landing page
-
-- The home section makes the first impression of the site to the visitor. The main background image gives a primary idea to the user of what products are sold here, and how they are prepared; it also displays the main contact details of the restaurant located at the bottom of the page as footer.
-
-![Navbar](./docs/readme-testing-images/home_page.jpeg)
-
-### Menu page
-
-- The menu section comes with images and descriptions of a few different options available at this restaurant, it also displays the main contact details of the restaurant located at the bottom of the page as footer.
-
-![Menu](./docs/readme-testing-images/menu_page.jpeg)
-
-### Reservation Page
-
-- On the booking page the customer it's prompted to login to continue with the online booking.
-
-![Reservations](./docs/readme-testing-images/reservation_page.jpeg)
-
-#### Register page
-
-- In this section, the user can create an account to make a registration as well as click on the log-in link to be able to access the site as a new or existing user.  
-
-![Register](./docs/readme-testing-images/register_page.jpeg)
-
-### Login page
-
-- The user can access the site as a registered user to proceed with his/her online booking.  
-
-![Login](./docs/readme-testing-images/login_page.jpeg)
-
-#### Book a Table (Reservation Page)
-
-- In this section, the user can proceed with his/her to book a table, provide his/her name, contact details, number of people, time, and date for the reservation.
-
-![Book a Table](./docs/readme-testing-images/book_a_table_page.jpeg)
-
-### Booking confirmation page
-
-- This section displays a thank you booking confirmation message, it gives the user the option to either perform updates to the booking that just has been made or view the menu again through the links provided within the message.
-
-![Booking Confirmation](./docs/readme-testing-images/booking_confirmation_page.jpeg)
-
-### My Bookings page
-
-- The current bookings for a customer are shown on the mybooking page, that way the customer can get an overview of all bookings and check the date and time, etc for each booking. On this page, the customer can also click on the "Update" button and make necessary changes to the booking that will be saved and shown on the mybooking page. The customer can also delete a booking by clicking on the "Cancel" button. It will then disappear from the list of reservations.
-
-![My Bookings](./docs/readme-testing-images/my_bookings_page.jpeg)
-
-### Logout page
-
-- Here the user can end his online session, this section also displays a message asking the customer if he wants to proceed with this action.
-
-![Logout](./docs/readme-testing-images/logout_page.jpeg)
-
-### Footer
-
-- The footer contains the essential information about the restaurant for easy access to the most relevant contact information and social media links on all pages throughout the website.
-
-![Logout](./docs/readme-testing-images/footer_image.jpeg)
-
-[Back to top](<#contents>)
-
-## Future Features
-
-Due to time constraints, the following features will be considered for future implementation on a separate project:
-
-- Blog
-- Gallery
-- Recipe videos 
-- Newsletter Sign up
+        - 
+        -
+        -
 
 [Back to top](<#contents>)
 
 * # Technologies Used
 
     * ## Languages Used
-        * [HTML](https://www.w3schools.com/html/)
-        * [CSS](https://www.w3schools.com/css/)
-        * [Javascript](https://en.wikipedia.org/wiki/JavaScript)
+
         * [Python](https://www.python.org/)
 
     * ## Libraries/Framework Used
+
         * [Django](https://www.djangoproject.com/)
-        * [Bootstrap](https://getbootstrap.com/)
-        * [jQuery](https://jquery.com/)
+        * [Django REST framework](https://www.django-rest-framework.org/)
 
     * ### Libraries/Module Installed
-        * asgiref==3.5.2
-        * cloudinary==1.30.0
+
+        * asgiref==3.6.0
+        * cloudinary==1.32.0
         * dj-database-url==0.5.0
-        * dj3-cloudinary-storage==0.0.6
-        * Django==3.2.16
-        * django-allauth==0.51.0
+        * dj-rest-auth==2.1.9
+        * Django==3.2.18
+        * django-allauth==0.44.0
+        * django-cloudinary-storage==0.3.0
+        * django-cors-headers==3.14.0
+        * django-filter==22.1
+        * djangorestframework==3.14.0
+        * djangorestframework-simplejwt==5.2.2
         * gunicorn==20.1.0
         * oauthlib==3.2.2
+        * Pillow==9.4.0
         * psycopg2==2.9.5
         * PyJWT==2.6.0
         * python3-openid==3.2.0
-        * pytz==2022.6
+        * pytz==2022.7.1
         * requests-oauthlib==1.3.1
         * sqlparse==0.4.3
 
     * ## Other Technologies
-        * [Postgres Database](https://www.postgresql.org/)
-        * [W3School](https://www.w3schools.com/)
+
         * [Stackoverflow](https://stackoverflow.com/)
         * [Git](https://git-scm.com/)
         * [Github](https://github.com/)
         * [Gitpod workspace](https://gitpod.io/workspaces)
         * [Heroku](https://dashboard.heroku.com/apps)
         * [Flowchart](https://lucid.app/documents#/documents?folder_id=home)
-        * [jshint](https://jshint.com/)
-        * [HTML code validator](https://validator.w3.org/)
-        * [CSS code validator](https://jigsaw.w3.org/css-validator/)
-        * [Font Awsome](https://fontawesome.com/)
-        * [Google Fonts](https://fonts.google.com/)
+        * [Cloudinary](https://cloudinary.com/)
+        * [ElephantSQL](https://www.elephantsql.com/)
+        * [CI Python Linter](https://pep8ci.herokuapp.com/)
         * [Slack](https://slack.com/intl/en-gb/)
 
 [Back to top](<#contents>)
@@ -260,12 +125,6 @@ I have included testing details in a separate document called [Testing.md](./doc
 - Update Booking rendiring error, I fixed it by udating the path under urls.py
 
 ![Update Booking Bug](./docs/readme-testing-images/edit_booking.jpeg)
-
-- Nav bar brightness issue, this was down to a bootstrap issue, I fixed it by substituting the span for a fontawesome icon instead.
-
-![Nav bar brightness](./docs/readme-testing-images/nav_bar_brightness.jpeg)
-
-![Nav bar brightness](./docs/readme-testing-images/font_awesome_fix.jpeg)
 
 [Back to top](<#contents>)
 

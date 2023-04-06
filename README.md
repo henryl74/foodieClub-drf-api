@@ -19,7 +19,7 @@ The repository for the frontend application can be found here:  <a href="https:/
 * [User Stories](#user-stories)
 * [Technologies Used](#technologies-used)
 * [Testing](<#testing>)
-  * [Bugs Fixed](#bugs-fixed)
+  * [Bugs Fixed](./docs/testing.md#bugs-fixed)
 * [Deployment](#deployment)
 * [Credits](<#credits>)
 * [Acknowledgements](<#acknowledgements>)
@@ -105,26 +105,6 @@ The principles of agile methodology were utilized during the project. By assigni
 # Testing
 
 I have included testing details in a separate document called [Testing.md](./docs/testing.md)
-
-[Back to top](<#contents>)
-
-## Bugs Fixed
-
-- Register page for laptops had a css issue with the container, I fixed it by removing the width, margin-left, and added margin: 0 7% within the css file.
-
-![Register Page Bug](./docs/readme-testing-images/register_bug.jpeg)
-
-- Menu, the images were not displaying, I fixed it by changing the path to absolute on each image in the html file.
-
-![Menu Page Bug](./docs/readme-testing-images/menu_images_bug.jpeg)
-
-- Home Page rendiring error, I fixed it by udating the path under urls.py
-
-![Home Page Bug](./docs/readme-testing-images/home_error_template.jpeg)
-
-- Update Booking rendiring error, I fixed it by udating the path under urls.py
-
-![Update Booking Bug](./docs/readme-testing-images/edit_booking.jpeg)
 
 [Back to top](<#contents>)
 

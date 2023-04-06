@@ -3,59 +3,6 @@
 ## Methodology  
 Testing was done throughout the process while developing the project by the use of Django debug pages. In addition all code has been validated with different online tools as presented below.
 
-* ## Html Code Validator
-    * All the HTML pages code ran through [html code validator](https://validator.w3.org/#validate_by_uri) and there were no issues found.
-
-### Home Page   
-![html code validator](./readme-testing-images/html_home_w3c_result.png)
-
-### Menu Page
-![html code validator](./readme-testing-images/html_menu_w3c_result.png)
-
-### Reservation Page
-![html code validator](./readme-testing-images/html_reservation_w3c_result.png)
-
-### Register Page
-![html code validator](./readme-testing-images/html_register_w3c_result.png)
-
-### Login Page
-![html code validator](./readme-testing-images/html_login_w3c_result.png)
-
-### Book a Table Page
-![html code validator](./readme-testing-images/html_book_a_table_w3c_result.png)
-
-### Booking Confirmation Page
-![html code validator](./readme-testing-images/html_booking_confirmation_w3c_result.png)
-
-### My Bookings Page
-![html code validator](./readme-testing-images/html_my_bookings__w3c_result.png)
-
-### Log Out Page
-![html code validator](./readme-testing-images/html_logout_w3c_result.png)
-
-* ## CSS Code Validator
-    * All the CSS code ran through using [css code validator](https://validator.w3.org/#validate_by_input) and there were no issues found.
-
-![css code validator](./readme-testing-images/css_w3c_result.png)
-
-There was however an error, and some warnings issues regarding the use of css variables that it could not validate, this only happened when I validated the code by URI.
-
-![css code validator](./readme-testing-images/font_awesome_error.png)
-
-![css code validator](./readme-testing-images/bootstrap_warnings.png)
-
-![css code validator](./readme-testing-images/font_awesome_warnings.jpeg)
-
-The following warnings messages were fixed for HTML and CSS while validating my code:
-
-* #### HTML
-
-![html code validator](./readme-testing-images/html_warning_fixed.png)
-
-* #### CSS
-
-![css code validator](./readme-testing-images/font_family_warning_fixed.png)
-
 
 * ## Javascript Code Validator
     * Using [jshint](https://jshint.com/), I ran my jquery/javascript code and found no errors.
@@ -172,6 +119,10 @@ views.py
 #### **Mobile**
 
 ![Log Out Page Mobile Lighthoue Validation](./readme-testing-images/lighthouse_log_out_mobile.png)
+
+## Bugs Fixed
+
+Document bugs here
 
 * ## Manual Testing
 

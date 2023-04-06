@@ -3,14 +3,9 @@
 ## Methodology  
 Testing was done throughout the process while developing the project by the use of Django debug pages. In addition all code has been validated with different online tools as presented below.
 
-
-* ## Javascript Code Validator
-    * Using [jshint](https://jshint.com/), I ran my jquery/javascript code and found no errors.
-
-
 * ## Python Validation
 
-    * All Python code was validated using CI Python Linter [https://pep8ci.herokuapp.com/](https://pep8ci.herokuapp.com/) and the following indentation errors were found and fixed accordingly.
+    * All Python code was validated using [CI Python Linter](https://pep8ci.herokuapp.com/) and the following indentation errors were found and fixed accordingly.
 
 manage.py
 

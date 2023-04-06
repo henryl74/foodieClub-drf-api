@@ -233,22 +233,7 @@ pip freeze > requirements.txt
 
 ## Deployment to Heroku
 
-### 1. Creating the Django Project
-* If development if being done locally: Activate your virtual environment
-* To ensure the virtual environment is not tracked by version control, add .venv to the .gitignore file.
-* Install Django and gunicorn: `pip install django gunicorn`
-* Install supporting database libraries dj_database_url and psycopg2 library: `pip install dj_database_url psycopg2`
-* Install Cloudinary libraries to manage static files: `pip install dj-3-cloudinary-storage`
-* Create file for requirements: `pip freeze --local > requirements.txt`
-* Create project:`django-admin startproject project_name .`
-* Create app: `python manage.py startapp app_name`
-* Add app to list of `installed apps` in settings.py file: `'app_name'`
-* Migrate changes: `python manage.py migrate`
-* Test server works locally: `python manage.py runserver`
-
-
-
-### 2. Create your Heroku app
+### 1. Create your Heroku app
 * Navigate to the Heroku website
 * Create a Heroku account by entering your email address and a password (or login if you have one already).
 * Activate the account through the authentication email sent to your email account
@@ -258,28 +243,104 @@ pip freeze > requirements.txt
 * Click create app
 * In the Heroku dashboard click on the Resources tab
 * Scroll down to Add-Ons, search for and select 'Heroku Postgres' / Now replaced by 'ElephantSQL'
-* In the Settings tab, scroll down to 'Reveal Config Vars' and copy the text in the box beside DATABASE_URL.
+* In the Settings tab, scroll down to 'Reveal Config Vars' and add the `DATABASE_URL` as key, the value should be the ElephantSQL database url you just copied.
 
-### 3. Set up Environment Variables
-* In you IDE create a new env.py file in the top level directory
-* Add env.py to the .gitignore file
-* In env.py import the os library
-* In env.py add `os.environ["DATABASE_URL"]` = "Paste in the text link copied above from Heroku DATABASE_URL"
-* In env.py add `os.environ["SECRET_KEY"] = "Make up your own random secret key"`
-* In Heroku Settings tab Config Vars enter the same secret key created in env.py by entering 'SECRET_KEY' in the box for 'KEY' and your randomly created secret key in the 'value' box.
+### 2. Return to workspace
+1. Install the heroku database
+```
+pip install dj_database_url_psycopg2
+```
+2. In settings.py import the database
+```
+import dj_database_url
+```
+3. In settings.py declare what database is used for production and development environment configurations
+```
+DATABASES = {
+    'default': ({
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    } if 'DEV' in os.environ else dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    ))
+}
+```
+4. Install Gunicorn library
+```
+pip install gunicorn
+```
+5. Create a Procfile in the root directory with the following values
+```
+release: python manage.py makemigrations && python manage.py migrate
+web: gunicorn drf_api.wsgi
+```
+6. In settings.py declare the allowed hosts of the application
+```
+ALLOWED_HOSTS = [
+    os.environ.get('ALLOWED_HOST'),
+    'localhost',
+]
+```
+7. Install the CORS header library
+``` 
+pip install django-cors-headers
+```
+8. Add this to the list of installed apps in settings.py
+```
+'corsheaders'
+```
+9. At the corsheaders middleware in settings.py
+```
+'corsheaders.middleware.CorsMiddleware',
+```
+10. You can now the allowed origins for network requests made to the server
+```
+if 'CLIENT_ORIGIN' in os.environ:
+     CORS_ALLOWED_ORIGINS = [
+         os.environ.get('CLIENT_ORIGIN'),
+         os.environ.get('CLIENT_ORIGIN_DEV')
+    ]
 
-### 5. Heroku Deployment: 
-* Click Deploy tab in Heroku
-* In the 'Deployment method' section select 'Github' and click the 'connect to Github' button to confirm.
-* In the 'search' box enter the Github repository name for the project
-* Click search and then click connect to link the heroku app with the Github repository. The box will confirm that heroku is connected to the repository.
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+         r"^https://.*\.gitpod\.io$",
+    ]
+CORS_ALLOW_CREDENTIALS = True
+```
+11. Set the jwt auth samesite variable to none
+```
+JWT_AUTH_SAMESITE = 'None'
+```
+12. In env.py set your secret key to a random key
+``` 
+os.environ['SECRET_KEY'] = 'random value here'
+```
+13. Reference your newly declared variable in settings.py
+```
+SECRET_KEY = os.environ.get('SECRET_KEY')
+```
+14. Set the Debug variable from True to
+```
+DEBUG = 'DEV' in os.environ
+```
+15. Copy the CLOUDINARY_URL and SECRET_KEY values from the env.py file and add them to heroku config vars
+16. Also in heroku config vars add in 
+```
+DISABLE_COLLECTSTATIC  set the value to 1
+```
+17. Make sure the requirements.txt file is up to date before deployment
+```
+pip freeze > requirements.txt
+```
+18. Add, commit all changes made and push all updates to your Github repository.
 
-### 6. Final Deployment
-In the IDE: 
-* When development is complete change the debug setting to: `DEBUG = False` in `settings.py` 
-* In Heroku settings config vars change the DISABLE_COLLECTSTATIC value to 0
-* Because DEBUG must be switched to True for development and False for production it is recommended that only manual deployment is used in Heroku. 
-* To manually deploy click the button 'Deploy Branch'. The default 'main' option in the dropdown menu should be selected in both cases. When the app is deployed a message 'Your app was successfully deployed' will be shown. Click 'view' to see the deployed app in the browser.
+### 5. Heroku Final Deployment:
+
+1. In the 'Deployment method' section select 'Github' and click the 'connect to Github' button to confirm.
+2. In the 'search' box enter the Github repository name for the project
+3. Click search and then click connect to link the heroku app with the Github backend repository. The box will confirm that heroku is connected to the repository.
+4. In 'manual deploy' section, click 'deploy branch'
+5. Once the build log is finished it will show open app button, click there to see deployed app.
 
 [Back to top](<#contents>)
 

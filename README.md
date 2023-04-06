@@ -323,7 +323,7 @@ pip freeze > requirements.txt
 ```
 18. Add, commit all changes made and push all updates to your Github repository.
 
-### 5. Heroku Final Deployment:
+### 3. Heroku Final Deployment
 
 1. In the 'Deployment method' section select 'Github' and click the 'connect to Github' button to confirm.
 2. In the 'search' box enter the Github repository name for the project

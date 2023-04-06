@@ -132,6 +132,105 @@ I have included testing details in a separate document called [Testing.md](./doc
 
 Git and GitHub are used for version control. Python is the backend language, and can't be displayed with GitHub alone, To live preview my project, I used Heroku.
 
+<h3 id="setting-up-json-web-tokens">Setting Up JSON Web Tokens</h3>
+
+1. Install JSON Web Token authentication
+```
+pip install dj-rest-auth
+```
+2. In settings.py add the following to the 'INSTALLED_APPS' list
+```
+'rest_framework.authtoken'
+'dj_rest_auth'
+```
+3. In the main urls.py file add the relevant url path
+```
+path('dj-rest-auth/', include('dj_rest_auth.urls')),
+```
+4. Migrate the database using the terminal command
+```
+python manage.py migrate
+```
+5. Install all_auth for user authentication
+```
+pip install 'dj-rest-auth[with_social]'
+```
+6. In settings.py add the following to the 'INSTALLED_APPS' list
+```
+'django.contrib.sites',
+'allauth',
+'allauth.account',
+'allauth.socialaccount',
+'dj_rest_auth.registration',
+```
+7. Add the following declaration in settings.py
+```
+SITE_ID = 1
+```
+8. In the main urls.py file add the registration url path
+```
+ path(
+        'dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')
+    ),
+```
+9. Install the JSON tokens with the *simple jwt* library
+``` 
+pip install djangorestframework-simplejwt
+```
+10. In env.py set DEV to 1 to check whether the environment is development or production
+```
+os.environ['DEV'] = '1'
+```
+11. In settings.py add the following if else statement
+```
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )],
+```
+12. Add the following declarations in settings.py
+```
+REST_USE_JWT = True # enables token authentication
+JWT_AUTH_SECURE = True # tokens sent over HTTPS only
+JWT_AUTH_COOKIE = 'my-app-auth' #access token
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token' #refresh token
+```
+13. Create a serializers.py file in the drf_api (project file name)
+14. Utilize the code from the Django documentation UserDetailsSerializer as follows:
+```
+from dj_rest_auth.serializers import UserDetailsSerializer
+from rest_framework import serializers
+
+
+class CurrentUserSerializer(UserDetailsSerializer):
+    """Serializer for Current User"""
+    profile_id = serializers.ReadOnlyField(source='profile.id')
+    profile_image = serializers.ReadOnlyField(source='profile.image.url')
+
+    class Meta(UserDetailsSerializer.Meta):
+        """Meta class to to specify fields"""
+        fields = UserDetailsSerializer.Meta.fields + (
+            'profile_id', 'profile_image'
+        )
+```
+15. In settings.py overwrite the default User Detail serializer
+```
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
+}
+```
+16. Run the migrations for database again
+```
+python manage.py migrate
+```
+17. Update the requirements file with the following terminal command
+```
+pip freeze > requirements.txt
+```
+18. Make sure to save all files, add and commit followed by pushing all updates to Github.
+
 ## Deployment to Heroku
 
 ### 1. Creating the Django Project
@@ -146,6 +245,8 @@ Git and GitHub are used for version control. Python is the backend language, and
 * Add app to list of `installed apps` in settings.py file: `'app_name'`
 * Migrate changes: `python manage.py migrate`
 * Test server works locally: `python manage.py runserver`
+
+
 
 ### 2. Create your Heroku app
 * Navigate to the Heroku website
@@ -167,59 +268,6 @@ Git and GitHub are used for version control. Python is the backend language, and
 * In env.py add `os.environ["SECRET_KEY"] = "Make up your own random secret key"`
 * In Heroku Settings tab Config Vars enter the same secret key created in env.py by entering 'SECRET_KEY' in the box for 'KEY' and your randomly created secret key in the 'value' box.
 
-### 4. Setting up settings.py
-
-* In your Django 'settings.py' file type:
-
- ```
- from pathlib import Path
- import os
- import dj_database_url
-
- if os.path.isfile("env.py"):
-  import env
- ```
-* Remove the default insecure secret key in settings.py and replace with the link to the secret key variable in Heroku by typing: `SECRET_KEY = os.environ.get(SECRET_KEY)`
-* Comment out the `DATABASES` section in settings.py and replace with:
-```
-DATABASES = {
-  'default': 
-  dj_database_url.parse(os.environ.get("DATABASE_URL"))
-  }`
-```
-* Create a Cloudinary account and from the 'Dashboard' in Cloudinary copy your url into the env.py file by typing: `os.environ["CLOUDINARY_URL"] = "cloudinary://<insert-your-url>"`
-* In Heroku  add cloudinary url to 'config vars'
-* In Heroku config vars add DISABLE_COLLECTSTATIC with value of '1' (note: this must be removed for final deployment)
-* Add Cloudinary libraries to the installed apps section of settings.py file:
- ```
- 'cloudinary_storage'
- 'django.contrib.staticfiles''
- 'cloudinary'
- ```
-* Connect Cloudinary to the Django app in `settings.py`:
-```
-STATIC_URL = '/static'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'STATIC')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE =
-'cloudinary_storage.storage.MediaCloudinaryStorage'
-* Link file to the templates directory in Heroku 
-* Place under the BASE_DIR: TEMPLATES_DIR = os.path.join(BASE_DIR,
-'templates')
-```
-* Change the templates directory to TEMPLATES_DIR. Place within the TEMPLATES array: `'DIRS': [TEMPLATES_DIR]`
-* Add Heroku Hostname to ALLOWED_HOSTS: ```ALLOWED_HOSTS =
-['rhi-book-nook.herokuapp.com', 'localhost']```
-*Create Procfile at the top level of the file structure and insert the following:
-    ``` web: gunicorn PROJECT_NAME.wsgi ```
-
-* Make an initial (if this has not been done previously) commit and push the code to the GitHub Repository.
-    ```git add .```
-    ```git commit -m "Initial deployment"```
-    ```git push```
-
 ### 5. Heroku Deployment: 
 * Click Deploy tab in Heroku
 * In the 'Deployment method' section select 'Github' and click the 'connect to Github' button to confirm.
@@ -237,11 +285,9 @@ In the IDE:
 
 ## Credits
 
-- [Code Institute walkthrough](https://codeinstitute.net/) as inspiration and code examples, the code institute walkthroughs "Hello Django" and "I Think Therefore I Blog" was used.
+- [Code Institute walkthrough](https://codeinstitute.net/) as inspiration and code examples, the code institute walkthroughs "Django REST Framework" was referenced during the development cycle of this API.
 
 - [Django Documenation](https://www.djangoproject.com/) was used to provide examples of code solutions and Django functionality.
-
-- [Bootstrap Documenation](https://getbootstrap.com/) was used to provide examples of Bootstrap functionality and building blocks.
 
 - [Django YouTube Tutorial on how to create a Blog](https://www.youtube.com/watch?v=n-FTlQ7Djqc&list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc)
 
@@ -253,7 +299,7 @@ In the IDE:
 
 - [Slack](https://slack.com/intl/en-gb/) community support.
 
-- Code Institute - Tutor Assistance, big thank you for all your support, suggestions and help!
+- Code Institute - Tutor Assistance, BIG THANK YOU for all your support, suggestions and help!
 
 
 [Back to top](<#contents>)
@@ -264,8 +310,8 @@ In the IDE:
 - The Code Institute slack community.
 - All my classmates for constantly sharing new ideas in our dedicated slack channel.
 - Stack Overflow question and answer website.
-- My mentor Chris Quinn, big thank you for all your all your amazing guidance given, I learned a lot throughout our sessions.
-- My family, THANK YOU for being part of the team.
+- My mentor for this project Marcel Mulders, thank you for all your all your guidance and support given, I learned a lot throughout our sessions.
+- My family, THANK YOU for being always part of the team and this journey.
 - Last but not least Code Institute student support team, for being there for us.
 
 [Back to top](<#contents>)

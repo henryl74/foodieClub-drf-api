@@ -46,19 +46,10 @@ The principles of agile methodology were utilized during the project. By assigni
 
 ## User Stories
 
--   #### Authenticated User Goals
-
-    - As an authenticated user I can create a posts so that other users can engage with the content of my account
-    - As an authenticated user I can click on a post so that I can read the full text
-    - As an authenticated user I can delete a post
-    - As an authenticated user I can see other users posts so that I can decide which user I want to follow
-    - As an authenticated user I can leave comments on a post so that I can participate in the conversation
-    - As an authenticated user I can view comments on an individual post
-    - As an authenticated user I can like or unlike a post so that I can interact with the content
-    - As an authenticated user I can login or logout from the site so that I can start or end my online session
-    - As an authenticated user I can create draft posts so that I can finish writing the content later (Won't be implemented)
-    - As an authenticated user I can add recipes to my post so that other users can like or leave comments
-    - As an authenticated user I can select a post so that I save it under my favorites
+  -   #### First Time Visitor Goals
+        - 
+        -
+        -
 
 [Back to top](<#contents>)
 

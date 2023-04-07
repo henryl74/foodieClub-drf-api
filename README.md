@@ -6,6 +6,8 @@ Using the principles of UX design and the agile development methodology, this pr
 
 # Preview
 
+![foodieClub Logo](./docs/readme-testing-images/foodieclub.png)
+
 You can view the live deployed backend here: <a href="https://foodieclub-drf-api.herokuapp.com/" target="_blank"> foodieClub DRF-API </a>
 
 You can view the live site here: <a href="https://foodieclub.herokuapp.com/" target="_blank"> foodieClub App </a>

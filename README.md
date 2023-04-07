@@ -2,7 +2,7 @@
 
 foodieClub project portfolio has been created for educational purposes only as the 5th project in the Code Institute’s full stack development program.
 
-Using the principles of UX design and the agile development methodology, this project was developed using Django Rest Framework that handles all backend functionality including user profiles, posts, comments, likes, bookmark posts, followers, authentication, authorization and more.
+Using the principles of UX design and the agile development methodology, this project was developed using Django Rest Framework that handles all backend functionality including user profiles, posts, comments, likes, bookmark posts, add recipes to posts, followers, authentication, authorization and more.
 
 # Preview
 

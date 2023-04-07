@@ -1,11 +1,13 @@
-# Testing  
+# Testing
+
+## [Back to README.md](../README.md)
 
 ## Methodology  
-Testing was done throughout the process while developing the project by the use of Django debug pages. In addition all code has been validated with different online tools as presented below.
+Testing was done throughout the process while developing the project by the use of Django debug pages. In addition all code has been validated with applicable online tools as presented below.
 
 * ## Python Validation
 
-    * All Python code was validated using [CI Python Linter](https://pep8ci.herokuapp.com/) found no errors or warnings except in the settings.py file lines too long which was related to built-in Django code.
+    * All Python code was validated using [CI Python Linter](https://pep8ci.herokuapp.com/) found no errors or warnings except in the settings.py file due "lines too long" which was related to built-in Django code.
 
 `settings.py`
 
@@ -26,50 +28,38 @@ Testing was done throughout the process while developing the project by the use 
 
 ![Result from Post testcase](./readme-testing-images/post_tests_results.png)
 
-## Bugs Fixed
+## URL Testings
 
-Document bugs here
+- Both the development and deployed versions of each URL have been manually tested by adding all the `/profiles`, `/posts`, `/comments`, `/likes`, `/favorites`, `/followers` and `/ingredients` next to url path one at a time to ensure everything is working.
 
-* ## Manual Testing
+## CRUD Functionality Testings
 
-    * In addition to the other tests, I have conducted a manual check list for myself to carry out to make sure that everything is working as intended.
+- Tested that users can search posts by post title or by the username of the posts owner
+- Tested that users can edit or delete their own posts
+- Tested that users can lits all their published posts 
 
-| Status | **Navigation Bar Logged Out**
-|:-------:|:--------|
-| &check; | Clicking the navbar logo loads the home page
-| &check; | That the navbar shows the tabs Home, Menu, Reservation, Register, Login
-| &check; | Clicking the Home tab on the navbar loads the home page
-| &check; | Clicking the Menu tab on the navbar loads the menu page
-| &check; | Clicking the Reservation tab on the navbar loads the reservation page
-| &check; | Clicking the Login tab on the navbar loads the login page
+## Bugs
 
-| Status | **Navigation Bar - User Logged In**
-|:-------:|:--------|
-| &check; | That the navbar shows the username of the logged in user
-| &check; | Clicking the navbar logo loads the home page
-| &check; | That the navbar shows the tabs Home, Menu, Reservation, My Bookings, Logout if the user is logged in
-| &check; | Clicking the Home tab on the navbar loads the home page
-| &check; | Clicking the Reservation tab on the navbar loads the Book a Table page
-| &check; | Clicking the My Bookings tab on the navbar loads the user's bookings made page
-| &check; | Clicking the Logout tab on the navbar loads the logout page
-| &check; | That the Logout button once clicked displays a logout message
+- ### Bugs Fixed
 
+  - In the ingredients serializer, I encountered an issue where I was getting `IngredientsSerializer object has no attribute get_created_at` error, this turned out to be an issue due `get_created_at` was not passed in the return.
+   
+       ![ingredients serializer error](./readme-testing-images/ingredients_get_issue.png)
 
-| Status | **Navigation Bar - Admin (superuser) User Logged In**
-|:-------:|:--------|
-| &check; | Clicking the navbar Django adminitration logo loads the home page
-| &check; | That the navbar displays a welcome message, tabs to View Site, Change Password, Log Out
-| &check; | That the navbar shows the username of the logged in user
-| &check; | Clicking the Accounts tab on the admin panel loads the Email addresses
-| &check; | Clicking the Email Addresses tab, it will load the user emails registered
-| &check; | Clicking the Restaurant tab on the admin panel loads the bookings tab
-| &check; | Clicking the Booking tab, it will list all the existing reservations that have been made
-| &check; | Clicking the Add Booking, allows the admin user to add a booking to an specific user
-| &check; | Clicking on an existing Booking, allows the admin user to delete or update that reservation
+  - In the ingredients urls, I encountered an error on the path; this was due a typo error within `'ingredients/<int:pk>/'`
+   
+       ![ingredients urls error](./readme-testing-images/ingredients_urls_issue.png)
 
-| Status | **Footer - User Logged Out/In**
-|:-------:|:--------|
-| &check; | That the Footer displays the Opening Hours, Contact Details, and Social Media icons
-| &check; | Clicking the Facebook icon loads the instagram home page in a new tab
-| &check; | Clicking the Instagram icon loads the facebook home page in a new tab
-| &check; | Clicking the TikTok icon loads the twitter home page in a new tab
+  - Git push, although this is not a bug, for first time I encountered serious issues pushing updates from one of my sessions, I solved this by following the instructions displayed the in the terminal.
+
+       - Step One
+
+       ![Git push issue resolution - step one](./readme-testing-images/git_push_issue_one.png)
+
+       - Step Two
+
+       ![Git push issue resolution - step two](./readme-testing-images/git_push_issue_two.png)
+
+* ## Additional Manual Testing
+
+    * In addition to the other tests, I have conducted a manual checklist for myself to make sure that everything is working as intended.

@@ -29,12 +29,17 @@ The repository for the frontend application can be found here:  <a href="https:/
 The Database Schema contains the following model instances:
 
 - Profiles
+- Followers
 - Posts
-- Ingredients
 - Comments
 - Likes
 - Favorites
-- Followers
+- Ingredients
+
+To create the entity relationship diagram, I used [LucidChart](https://lucid.co/). It shows the entire relationship between all models in the database.
+
+![Entity Relationship Diagram](./docs/readme-testing-images/database_er_diagram.png)
+
 
 [Back to top](<#contents>)
 

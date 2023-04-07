@@ -63,3 +63,5 @@ Testing was done throughout the process while developing the project by the use 
 * ## Additional Manual Testing
 
     * In addition to the other tests, I have conducted a manual checklist for myself to make sure that everything is working as intended.
+
+[Back to top](<#testing>)

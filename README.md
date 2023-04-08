@@ -367,8 +367,9 @@ pip freeze > requirements.txt
 - The Code Institute slack community.
 - All my classmates for constantly sharing new ideas in our dedicated slack channel.
 - Stack Overflow question and answer website.
-- My mentor for this project Marcel Mulders, thank you for all your all your guidance and support given, I learned a lot throughout our sessions.
-- My family, THANK YOU for being always part of the team and this journey.
-- Last but not least Code Institute student support team, for being there for us.
+- My mentor for this project Marcel Mulders, thank you for your guidance and support given.
+- My partner and my daughter, **THANK YOU** for all the support; and for being part of this journey.
+- Code Institute student support team, for being there for us.
+- **Thank you so much** for such a rewarding experience [Code Institute!](https://codeinstitute.net/)
 
 [Back to top](<#contents>)
